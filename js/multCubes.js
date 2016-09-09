@@ -306,13 +306,13 @@ function render() {
 
 	root.traverse( function ( object ) {
 
-		object.rotation.x = 2 * rx;
-		object.rotation.y = 2 * ry;
-		object.rotation.z = 2 * rz;
+		object.rotation.x = rx;
+		object.rotation.y = ry;
+		object.rotation.z = rz;
 
-		object.position.x += 2 * rx;
-		object.position.y += 2 * ry;
-		object.position.z += 2 * rz;
+		object.position.x += 5 * rx;
+		object.position.y += 5 * ry;
+		object.position.z += 5 * rz;
 
 	} );
 	/*console.log("Camera x:", camera.rotation.x);
