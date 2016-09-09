@@ -9,9 +9,6 @@ scene.background = new THREE.Color( 0xFFFFFF );
 /*Construct camera and set properties*/
 var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100000);
 camera.position.z = 1000;
-/*camera.rotation.x = -1.4433;
-camera.rotation.y = -1.4168;
-camera.rotation.z = -1.4418;*/
 /*************************************/
 
 /*Construct and set Renderer*/
@@ -28,135 +25,266 @@ controls.enableZoom = true;
 
 var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 var material = new THREE.MeshNormalMaterial();
+/*var material = new THREE.MeshPhongMaterial( {
+						color: 0x000000,
+						emissive: 0x000000,
+						side: THREE.DoubleSide,
+						shading: THREE.FlatShading,
+						//map: texture
+					});*/
 
 root = new THREE.Mesh( geometry, material );
 //root.position.x = 1000;
 scene.add( root );
 
 var amount = 200, object, parent = root;
-/*Experimental +x +y*/
-for ( var i = 0; i < amount; i ++ ) {
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = 100;
-	object.position.y = 100;
+var xyDiagonalCubes = function() {
+	/*Experimental +x +y*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = 100;
+		object.position.y = 100;
 
-}
-parent = root;
+		parent.add( object );
+		parent = object;
 
-/*Experimental +x -y*/
-for ( var i = 0; i < amount; i ++ ) {
+	}
+	parent = root;
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = 100;
-	object.position.y = -100;
+	/*Experimental +x -y*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = 100;
+		object.position.y = -100;
 
-}
-parent = root;
-/*Experimental -x +y*/
-for ( var i = 0; i < amount; i ++ ) {
+		parent.add( object );
+		parent = object;
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = -100;
-	object.position.y = 100;
+	}
+	parent = root;
+	/*Experimental -x +y*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = -100;
+		object.position.y = 100;
 
-}
+		parent.add( object );
+		parent = object;
 
-parent = root;
+	}
 
-/*Experimental -x -y*/
-for ( var i = 0; i < amount; i ++ ) {
+	parent = root;
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = -100;
-	object.position.y = -100;
+	/*Experimental -x -y*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = -100;
+		object.position.y = -100;
 
-}
+		parent.add( object );
+		parent = object;
 
-parent = root;
+	}
 
-/*Positive X*/
-for ( var i = 0; i < amount; i ++ ) {
-
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = 100;
-
-	parent.add( object );
-	parent = object;
-
+	parent = root;
 }
 
-parent = root;
-/*Negative X*/
-for ( var i = 0; i < amount; i ++ ) {
+xyDiagonalCubes();
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.x = - 100;
+var xyzCubes = function() {
+	/*Positive X*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = 100;
 
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+	/*Negative X*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = - 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+	/*Negative Y*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.y = - 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+	/*Positive Y*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.y = 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+	/*Negative Z*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = - 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+	/*Positive Z*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+	parent = root;
 }
 
-parent = root;
-/*Negative Y*/
-for ( var i = 0; i < amount; i ++ ) {
+xyzCubes();
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.y = - 100;
+var zyDiagonalCubes = function() {
+	/*Experimental +z +y*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = 100;
+		object.position.y = 100;
 
+		parent.add( object );
+		parent = object;
+
+	}
+	parent = root;
+
+	/*Experimental +z -y*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = 100;
+		object.position.y = -100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+	parent = root;
+	/*Experimental -z +y*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = -100;
+		object.position.y = 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+
+	/*Experimental -x -y*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.z = -100;
+		object.position.y = -100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
 }
 
-parent = root;
-/*Positive Y*/
-for ( var i = 0; i < amount; i ++ ) {
+zyDiagonalCubes();
 
-	object = new THREE.Mesh( geometry, material );
-	object.position.y = 100;
+var xzDiagonalCubes = function() {
+	/*Experimental +x +z*/
+	for ( var i = 0; i < amount; i ++ ) {
 
-	parent.add( object );
-	parent = object;
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = 100;
+		object.position.z = 100;
 
+		parent.add( object );
+		parent = object;
+
+	}
+	parent = root;
+
+	/*Experimental +x -z*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = 100;
+		object.position.z = -100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+	parent = root;
+	/*Experimental -x +z*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = -100;
+		object.position.z = 100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
+
+	/*Experimental -x -z*/
+	for ( var i = 0; i < amount; i ++ ) {
+
+		object = new THREE.Mesh( geometry, material );
+		object.position.x = -100;
+		object.position.z = -100;
+
+		parent.add( object );
+		parent = object;
+
+	}
+
+	parent = root;
 }
 
-parent = root;
-/*Negative Z*/
-for ( var i = 0; i < amount; i ++ ) {
-
-	object = new THREE.Mesh( geometry, material );
-	object.position.z = - 100;
-
-	parent.add( object );
-	parent = object;
-
-}
-
-parent = root;
-/*Positive Z*/
-for ( var i = 0; i < amount; i ++ ) {
-
-	object = new THREE.Mesh( geometry, material );
-	object.position.z = 100;
-
-	parent.add( object );
-	parent = object;
-
-}
+xzDiagonalCubes();
 
 container.appendChild( renderer.domElement );
 
@@ -166,10 +294,10 @@ function render() {
 	var time = Date.now() * 0.001;
 	//console.log("Time is ", time);
 
-	var rx = Math.sin( time * 0.2 ) * 0.1;
-	//console.log("Rx is ", rx);
-	var ry = Math.sin( time * 0.2 ) * 0.1;
-	var rz = Math.sin( time * 0.2 ) * 0.1;
+	var rx = Math.sin( time * 0.2 ) * 0.3;
+	console.log("Rx is ", rx);
+	var ry = Math.sin( time * 0.2 ) * 0.3;
+	var rz = Math.sin( time * 0.2 ) * 0.3;
 
 	/*camera.position.x += ( mouseX - camera.position.x ) * .05;
 	camera.position.y += ( - mouseY - camera.position.y ) * .05;*/
@@ -178,9 +306,13 @@ function render() {
 
 	root.traverse( function ( object ) {
 
-		object.rotation.x = rx;
-		object.rotation.y = ry;
-		object.rotation.z = rz;
+		object.rotation.x = 2 * rx;
+		object.rotation.y = 2 * ry;
+		object.rotation.z = 2 * rz;
+
+		object.position.x += 2 * rx;
+		object.position.y += 2 * ry;
+		object.position.z += 2 * rz;
 
 	} );
 	/*console.log("Camera x:", camera.rotation.x);
