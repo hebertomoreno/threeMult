@@ -7,11 +7,11 @@ scene.background = new THREE.Color( 0xFFFFFF );
 /************************************/
 
 /*Construct camera and set properties*/
-var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 10000);
+var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100000);
 camera.position.z = 1000;
-camera.rotation.x = -1.4433;
+/*camera.rotation.x = -1.4433;
 camera.rotation.y = -1.4168;
-camera.rotation.z = -1.4418;
+camera.rotation.z = -1.4418;*/
 /*************************************/
 
 /*Construct and set Renderer*/
@@ -23,7 +23,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 controls = new THREE.OrbitControls( camera, renderer.domElement );
 controls.enableDamping = true;
 controls.dampingFactor = 0.25;
-controls.enableZoom = false;
+controls.enableZoom = true;
 /******************************/
 
 var geometry = new THREE.BoxGeometry( 100, 100, 100 );
@@ -34,7 +34,60 @@ root = new THREE.Mesh( geometry, material );
 scene.add( root );
 
 var amount = 200, object, parent = root;
+/*Experimental +x +y*/
+for ( var i = 0; i < amount; i ++ ) {
 
+	object = new THREE.Mesh( geometry, material );
+	object.position.x = 100;
+	object.position.y = 100;
+
+	parent.add( object );
+	parent = object;
+
+}
+parent = root;
+
+/*Experimental +x -y*/
+for ( var i = 0; i < amount; i ++ ) {
+
+	object = new THREE.Mesh( geometry, material );
+	object.position.x = 100;
+	object.position.y = -100;
+
+	parent.add( object );
+	parent = object;
+
+}
+parent = root;
+/*Experimental -x +y*/
+for ( var i = 0; i < amount; i ++ ) {
+
+	object = new THREE.Mesh( geometry, material );
+	object.position.x = -100;
+	object.position.y = 100;
+
+	parent.add( object );
+	parent = object;
+
+}
+
+parent = root;
+
+/*Experimental -x -y*/
+for ( var i = 0; i < amount; i ++ ) {
+
+	object = new THREE.Mesh( geometry, material );
+	object.position.x = -100;
+	object.position.y = -100;
+
+	parent.add( object );
+	parent = object;
+
+}
+
+parent = root;
+
+/*Positive X*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -46,7 +99,7 @@ for ( var i = 0; i < amount; i ++ ) {
 }
 
 parent = root;
-
+/*Negative X*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -58,7 +111,7 @@ for ( var i = 0; i < amount; i ++ ) {
 }
 
 parent = root;
-
+/*Negative Y*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -70,7 +123,7 @@ for ( var i = 0; i < amount; i ++ ) {
 }
 
 parent = root;
-
+/*Positive Y*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -82,7 +135,7 @@ for ( var i = 0; i < amount; i ++ ) {
 }
 
 parent = root;
-
+/*Negative Z*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -94,7 +147,7 @@ for ( var i = 0; i < amount; i ++ ) {
 }
 
 parent = root;
-
+/*Positive Z*/
 for ( var i = 0; i < amount; i ++ ) {
 
 	object = new THREE.Mesh( geometry, material );
@@ -111,10 +164,12 @@ function render() {
 	requestAnimationFrame(render);
 
 	var time = Date.now() * 0.001;
+	//console.log("Time is ", time);
 
-	var rx = Math.sin( time * 0.1 ) * 0.2;
-	var ry = Math.sin( time * 0.1 ) * 0.1;
-	var rz = Math.sin( time * 0.1 ) * 0.1;
+	var rx = Math.sin( time * 0.2 ) * 0.1;
+	//console.log("Rx is ", rx);
+	var ry = Math.sin( time * 0.2 ) * 0.1;
+	var rz = Math.sin( time * 0.2 ) * 0.1;
 
 	/*camera.position.x += ( mouseX - camera.position.x ) * .05;
 	camera.position.y += ( - mouseY - camera.position.y ) * .05;*/
@@ -128,9 +183,9 @@ function render() {
 		object.rotation.z = rz;
 
 	} );
-	console.log("Camera x:", camera.rotation.x);
+	/*console.log("Camera x:", camera.rotation.x);
 	console.log("Camera y:", camera.rotation.y);
-	console.log("Camera z:", camera.rotation.z);
+	console.log("Camera z:", camera.rotation.z);*/
 	renderer.render( scene, camera );
 }
 
